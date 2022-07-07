@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class CalculatorTest {
 
-    public static Calculating calculating = null; // здесь будет реализация метода
+    public static Calculating calculating = null;
 
     @ParameterizedTest
     @MethodSource("monthPayTest")

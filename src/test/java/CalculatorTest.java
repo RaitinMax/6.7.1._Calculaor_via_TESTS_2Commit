@@ -13,25 +13,25 @@ public class CalculatorTest {
     @ParameterizedTest
     @MethodSource("monthPayTest")
     public void testOverPay(BigDecimal years, BigDecimal sum, BigDecimal procent, BigDecimal result) {
-        BigDecimal monthlyPay = calculate.monthlyPay(years, sum, procent);
+        BigDecimal monthlyPay = calculating.monthPay(years, sum, procent);
         Assertions.assertEquals(result, monthlyPay);
     }
 
     @ParameterizedTest
     @MethodSource("sumPayTest")
-    public void testSum(BigDecimal years, BigDecimal sum, BigDecimal procent, BigDecimal result) {
-        BigDecimal sumToPay = calculate.monthlyPay(years, sum, procent);
+    public void overPayTest(BigDecimal years, BigDecimal sum, BigDecimal procent, BigDecimal result) {
+        BigDecimal sumToPay = calculating.allSum(years, sum, procent);
         Assertions.assertEquals(result, sumToPay);
     }
 
     @ParameterizedTest
     @MethodSource("overPayTest")
     public void testSum(BigDecimal years, BigDecimal sum, BigDecimal procent, BigDecimal result) {
-        BigDecimal overPay = calculate.monthlyPay(years, sum, procent);
+        BigDecimal overPay = calculating.overPay(years, sum, procent);
         Assertions.assertEquals(result, overPay);
     }
 
-    public static Stream<Arguments> monthPayTest2() {
+    public static Stream<Arguments> monthPayTest() {
         return Stream.of(Arguments.of(new BigDecimal(1), new BigDecimal(10000), new BigDecimal(20), new BigDecimal("1000.00")),
                 Arguments.of(new BigDecimal(1), new BigDecimal(5000), new BigDecimal(20), new BigDecimal("500.00")),
                 Arguments.of(new BigDecimal(2), new BigDecimal(6000), new BigDecimal(10), new BigDecimal("300.00")),
@@ -54,5 +54,4 @@ public class CalculatorTest {
                 Arguments.of(new BigDecimal("0.5"), new BigDecimal(10000), new BigDecimal(40), new BigDecimal("2000.00")),
                 Arguments.of(new BigDecimal(1), new BigDecimal(1000), new BigDecimal("12.5"), new BigDecimal("125.00")));
     }
-
 }
